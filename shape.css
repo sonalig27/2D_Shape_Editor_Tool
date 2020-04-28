@@ -3,8 +3,8 @@ body {
     font-family: "Lato", sans-serif;
 }
 
-/* Style pf general sidebar */
-.sidebar {
+/* general sideToolBar styling */
+.sideToolBar {
     height: 100%;
     width: 0;
     position: fixed;
@@ -17,8 +17,8 @@ body {
     padding-top: 10px;
 }
 
-/* Style of sidebar a */
-.sidebar a {
+/* sideToolBar anchor styling */
+.sideToolBar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -27,13 +27,13 @@ body {
     transition: 0.3s;
 }
 
-/* Style of sidebar buttons when hovered over */
-.sidebar a:hover {
+/* sideToolBar buttons styling for hover action */
+.sideToolBar a:hover {
     color: #f1f1f1;
 }
 
-/* Style of sidebar when closed */
-.sidebar .closebtn {
+/* sideToolBar styling on close */
+.sideToolBar .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
@@ -41,7 +41,7 @@ body {
     margin-left: 50px;
 }
 
-/* Style of Menu Button */
+/* Menu Button styling */
 .openbtn {
     font-size: 15px;
     cursor: pointer;
@@ -51,11 +51,11 @@ body {
     border: none;
 }
 
-/* Change background color of Menu Button when hovered */
+/*  Styling of Change in Menu Button background color on hover */
 .openbtn:hover {
     background-color: #444;
 }
-/* Style of Update Button mimcs colors of Toolbar buttons (btnGroupH)*/
+/* Update Button styling*/
 .updatebtn {
     font-size: 20px;
     cursor: pointer;
@@ -65,18 +65,17 @@ body {
     border: none;
 }
 
-/* Change background color of Update Button when hovered */
+/* styling of Change in Update Button background color when hovered */
 .updatebtn:hover {
-/*     background-color: lightcyan; */
     background-color: #3e8e41;
 }
 
-#main {
+#mainPage {
     transition: margin-left .5s;
     padding: 16px;
 }
 
-/* Style the tab buttons */
+/* Tab buttons styling */
 .tablink {
     background-color: #555;
     color: white;
@@ -89,12 +88,12 @@ body {
     width: 33.3%;
 }
 
-/* Change background color of buttons on hover */
+/* Styling of buttons to Change background color on hover */
 .tablink:hover {
     background-color: #777;
 }
 
-/* Set default styles for tab content */
+/* Tab content default styling */
 .tabcontent {
     color: white;
     display: none;
@@ -108,64 +107,63 @@ body {
   margin-top : 20px;
 }
 
-/* btnGroupH Style */
+/* Styling of btnGroupH */
 .btnGroupH button {
-    background-color: lightblue; /* Green background */
-    border: 2px solid teal; /* Green border */
-    color: black; /* Black text */
+    background-color: lightblue;
+    border: 2px solid teal;
+    color: black;
     font-size: 15px;
-    padding: 10px 20px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    float: left; /* Float the buttons side by side */
+    padding: 10px 20px;
+    cursor: pointer;
+    float: left;
     min-height: 100px;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-/* btnGroupH Style when not last in group */
+/* Styling of btnGroupH for not last in group */
 .btnGroupH button:not(:last-child) {
-    border-right: none; /* Prevent double borders */
+    border-right: none;
 }
 
-/* btnGroupH Style when last in group */
-/* Clear floats (clearfix hack) */
+/* Styling of btnGroupH when last in group */
 .btnGroupH:after {
     content: "";
     clear: both;
     display: table;
 }
 
-/* btnGroupH Style when hovered over */
+/* Styling of btnGroupH when hovered */
 .btnGroupH button:hover {
     background-color: teal;
 }
 
-/* buttonGroupV Style */
+/* Styling of buttonGroupV */
 .btnGroupV button {
-    background-color: lightblue; /* Green background */
-    border: 1px solid teal; /* Green border */
-    color: black; /* Black text */
+    background-color: lightblue;
+    border: 1px solid teal;
+    color: black;
     font-size: 17px;
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    width: 20%; /* Set a width if needed */
-    display: block; /* Make the buttons appear below each other */
+    padding: 10px 24px;
+    cursor: pointer;
+    width: 20%;
+    display: block;
 }
 
-/* btnGroupV Style when not last child */
+/* Styling of btnGroupV when not last child */
 .btnGroupV button:not(:last-child) {
-    border-bottom: none; /* Prevent double borders */
+    border-bottom: none;
 }
 
-/* Add this attribute to the element that needs a tooltip */
+/* Adding the below attribute for a tooltip */
 [data-tooltip] {
   position: relative;
   z-index: 2;
   cursor: pointer;
 }
 
-/* Hide the tooltip content by default */
+/* Default hide tooltip */
 [data-tooltip]:before,
 [data-tooltip]:after {
   visibility: hidden;
@@ -175,7 +173,7 @@ body {
   pointer-events: none;
 }
 
-/* Position tooltip above the element */
+/* tooltip positioning */
 [data-tooltip]:before {
   position: absolute;
   bottom: 110%;
@@ -195,7 +193,7 @@ body {
   line-height: 1.2;
 }
 
-/* Triangle hack to make tooltip look like a speech bubble */
+/* tooltip styling */
 [data-tooltip]:after {
   position: absolute;
   bottom: 110%;
@@ -210,7 +208,7 @@ body {
   line-height: 0;
 }
 
-/* Show tooltip content on hover */
+/* Styling of tooltip on hover */
 [data-tooltip]:hover:before,
 [data-tooltip]:hover:after {
   visibility: visible;
@@ -219,52 +217,33 @@ body {
   opacity: 1;
 }
 
-/* The table in the sidebar tab Object Info */
+/* Shape Info table */
 .leftCol {
     text-align: right;
 }
 .rightCol {
     text-align: left;
-/*     text-style: bold; */
-/*     border: 3px solid green; */
 }
-.objInfoTable {
+.shapeInfoTable {
     margin: auto;
-/*     border: 3px solid red; */
-/*     padding: 10px; */
 }
-/* .objInfoTable tr:nth-child(even){background-color: #f2f2f2;} */
 
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-/* 
-@media screen and (max-height: 450px) {
-    .sidebar {padding-top: 15px;}
-    .sidebar a {font-size: 18px;}
-}
- */
-
-/* 
-Styles for a modal pop-up for error messages
-From https://www.w3schools.com/howto/howto_css_modals.asp
- */
-
-/* The Modal (background) */
+/* background for Modal */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
 }
 
-/* Modal Content */
+/* Content for Modal */
 .modal-content {
     position: relative;
     background-color: #fefefe;
@@ -279,7 +258,7 @@ From https://www.w3schools.com/howto/howto_css_modals.asp
     animation-duration: 0.4s
 }
 
-/* Add Animation */
+/* Adding animation */
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0} 
     to {top:0; opacity:1}
@@ -290,7 +269,7 @@ From https://www.w3schools.com/howto/howto_css_modals.asp
     to {top:0; opacity:1}
 }
 
-/* The Close Button */
+/* Close Button */
 .close {
     color: white;
     float: right;
@@ -305,15 +284,7 @@ From https://www.w3schools.com/howto/howto_css_modals.asp
     cursor: pointer;
 }
 
-.modal-header {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
-}
-
-.modal-body {padding: 2px 16px;}
-
-.modal-footer {
+.modal-title {
     padding: 2px 16px;
     background-color: #5cb85c;
     color: white;

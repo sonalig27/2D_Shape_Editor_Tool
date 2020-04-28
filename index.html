@@ -14,136 +14,68 @@
     <script type = "text/javascript" src="shape.js"></script>
 </head>
 
-<body>  <!-- onload="initApp()"> -->
-    <!--
-        Instead of onload since we just need the DOM model, no need to
-        wait for images or other resources to load
-     -->
+<body>
     <script>
         document.addEventListener("DOMContentLoaded", initApp);
     </script>
 
 <!--
-The <body> has two top-level DIVs - a sidebar on the left and the main
-drawing area on the right. The sidebar is collapsible and starts off
-collapsed. There is also a third hidden-by-default DIV for a modal
-pop-up to show error messages.
+The <body> consists of 2 Div elements - a sideToolBar which is collapsible(default) and main drawing page. 
+There is another div for modal pop-up that is used to show error messages.
  -->
 
-<!-- Collapsible Sidebar -->
-<div id="mySidebar" class="sidebar">
-  <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">Close</a> -->
-  <!-- <button class="tablink" onclick="openTab('About', this, 'red')" id="defaultOpen">About</button> -->
-  <button class="tablink" onclick="openTab('Toolbar', this, 'red')">Toolbar</button>
-  <button class="tablink" onclick="openTab('Object Info', this, 'red')">Object Info</button>
-  <button href="javascript:void(0)" class="tablink" onclick="closeNav()">Close</button>
+<!-- Side Tool Bar -->
+  <div id="toolBar" class="sideToolBar">
+    <button class="tablink" onclick="openTab('Shapes', this, 'red')">Shapes</button>
+    <button class="tablink" onclick="openTab('Shape Info', this, 'red')">Shape Info</button>
+    <button href="javascript:void(0)" class="tablink" onclick="closeNav()">Close</button>
 
-  <!-- <div id="About" class="tabcontent">
-    <h1>About</h1>
-    <p>Welcome to my project!</p>
-    <p>This is a learning tool for those just getting into user interface/user experience (UI/UX) design</p>
-    <p>Start by going to the Toolbar and selecting an object to put on the canvas to the right</p>
-    <p>Just click anywhere on the canvas to place a default version of the selected object</p>
-    <p>You can change the shape's properties by double-clicking it on the canvas, which will open the sidebar to the Object Info tab</p>
-    <p>Enjoy and have fun!</p>
-    <p>NOTE: This is still a work in progress and some of the features mentioned above may or may not work at this time</p>
-  </div> -->
-
-  <div id="Toolbar" class="tabcontent">
-    <h1>Toolbar</h1>
-    <!-- <p>Click on the object you want then click on the canvas</p>
-    <p>A default version of the selected object will appear</p>
-    <p>You can change the properties of the object by double-clicking it on the canvas</p> -->
-
-    <div class="btnGroupV">
-
-      <div class="btnGroupH">
-        <button data-tooltip="Circle" onclick="setShape('circle')" style="background-image: url(icons/circle.png)"></button>
-        <button data-tooltip="Curve" onclick="setShape('curve')" style="background-image: url(icons/curve.png)"></button>
-        <button data-tooltip="Ellipse" onclick="setShape('ellipse')" style="background-image: url(icons/ellipse.png)"></button>
-        <button data-tooltip="Square" onclick="setShape('square')" style="background-image: url(icons/square.png)"></button>
-        <button data-tooltip="Rectangle" onclick="setShape('rectangle')" style="background-image: url(icons/rectangle.png)"></button>
-        <button data-tooltip="Triangle" onclick="setShape('triangle')" style="background-image: url(icons/triangle.png)"></button>
-        <button data-tooltip="Hexagon" onclick="setShape('hexagon')" style=" background-image: url(icons/hexagon.png)"></button>
-        <button data-tooltip="Pentagon" onclick="setShape('pentagon')" style=" background-image: url(icons/pentagon.png)"></button>
-        <button data-tooltip="Star" onclick="setShape('star')" style=" background-image: url(icons/star.png)"></button>
-        <button data-tooltip="Ring" onclick="setShape('ring')" style=" background-image: url(icons/ring.png)"></button>
-        <button data-tooltip="Line" onclick="setShape('line')" style="background-image: url(icons/line.png)"></button>
-        <button data-tooltip="Arrow" onclick="setShape('arrow')" style="background-image: url(icons/arrow.png)"></button>
-        <button data-tooltip="Poly Line" onclick="setShape('polyline')" style="background-image: url(icons/polyline.png)"></button>
-        <button data-tooltip="Text" onclick="setShape('text')" style="background-image: url(icons/text.png)"></button>
-
+    <div id="Shapes" class="tabcontent">
+      <h1>Shapes</h1>
+      <div class="btnGroupV">
+        <div class="btnGroupH">
+          <button data-tooltip="Circle" onclick="setShape('circle')" style="background-image: url(icons/circle.png)"></button>
+          <button data-tooltip="Curve" onclick="setShape('curve')" style="background-image: url(icons/curve.png)"></button>
+          <button data-tooltip="Ellipse" onclick="setShape('ellipse')" style="background-image: url(icons/ellipse.png)"></button>
+          <button data-tooltip="Square" onclick="setShape('square')" style="background-image: url(icons/square.png)"></button>
+          <button data-tooltip="Rectangle" onclick="setShape('rectangle')" style="background-image: url(icons/rectangle.png)"></button>
+          <button data-tooltip="Triangle" onclick="setShape('triangle')" style="background-image: url(icons/triangle.png)"></button>
+          <button data-tooltip="Hexagon" onclick="setShape('hexagon')" style=" background-image: url(icons/hexagon.png)"></button>
+          <button data-tooltip="Pentagon" onclick="setShape('pentagon')" style=" background-image: url(icons/pentagon.png)"></button>
+          <button data-tooltip="Star" onclick="setShape('star')" style=" background-image: url(icons/star.png)"></button>
+          <button data-tooltip="Ring" onclick="setShape('ring')" style=" background-image: url(icons/ring.png)"></button>
+          <button data-tooltip="Line" onclick="setShape('line')" style="background-image: url(icons/line.png)"></button>
+          <button data-tooltip="Arrow" onclick="setShape('arrow')" style="background-image: url(icons/arrow.png)"></button>
+          <button data-tooltip="Poly Line" onclick="setShape('polyline')" style="background-image: url(icons/polyline.png)"></button>
+          <button data-tooltip="Text" onclick="setShape('text')" style="background-image: url(icons/text.png)"></button>
+        </div>
       </div>
     </div>
-
+    <div id="Shape Info" class="tabcontent"></div>
   </div>
 
-  <div id="Object Info" class="tabcontent">
-    <!-- Default text is defined in sidebar.js -->
-  </div>
-
-</div>
-
-<!-- Main Area -->
-<div id="main">
-  <button class="openbtn" onclick="openNav()">Menu</button>
-  <!-- <button id="save" class="openbtn" onclick="generateHTML()">Save</button> -->
-  <button id="save" class="openbtn" onclick="canvasToPdf()">Save as pdf</button>
-  <button id="saveasimage" class="openbtn" onclick = "canvasToJpg()">Save as image</button>
-  <button id="saveasjson" class="openbtn" onclick = "canvasToJson();">Save as Json</button>
-  <button id="loadasjson" class="openbtn" onclick = "loadJson()">Load Json</button>
-  <!-- <input id="file" type="file"/> -->
-  <!-- Main drawing area -->
-  <div class="canvas" id="canvas" style="border: 2px solid red;">
-      <p>Main Drawing Area</p>
-  </div>
-</div>
-
-<!-- The Modal -->
-<!-- From https://www.w3schools.com/howto/howto_css_modals.asp -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">&times;</span>
-      <h2>Can't Load Image</h2>
+  <!--Main Page -->
+  <div id="mainPage">
+    <button class="openbtn" onclick="openNav()">Menu</button>
+    <button id = "showGrid" class="openbtn" onclick="showGrid()">Show Grid</button>
+    <button id="save" class="openbtn" onclick="canvasToPdf()">Save as pdf</button>
+    <button id="saveasimage" class="openbtn" onclick = "canvasToJpg()">Save as image</button>
+    <button id="saveasjson" class="openbtn" onclick = "canvasToJson();">Save as Json</button>
+    <button id="loadasjson" class="openbtn" onclick = "loadJson()">Load Json</button>
+    <!-- Canvas drawing area -->
+    <div class="canvas" id="canvas" style="border: 2px solid red;">
+      <p>Canvas - 2D Shape Drawing Area</p>
     </div>
-    <div class="modal-body">
-      <p>The Image URL you specified can't be loaded.</p>
-        <ul>
-            <li>The URL may simply be wrong - double check it</li>
-            <li>The web server providing the image may be configured
-                to disallow certain kinds of sharing</li>
-                <ul>
-                    <li>A work-around is to use another browser window to download
-                        the image locally, then load it with the
-                        <span style="font-weight: bold;">Use a local image file</span>
-                        button</li>
-                </ul>
-            <li>If you're just looking for images to experiment with, try</li>
-                <ul>
-                    <li><a href="https://commons.wikimedia.org/wiki/Main_Page"
-                            target="_blank">Wikimedia Commons</a></li>
-                    <li><a href="https://www.wikipedia.org/"
-                            target="_blank">Wikipedia</a> &rArr;
-                            <a href="https://en.wikipedia.org/wiki/Puppy"
-                                target="_blank">Puppies!</a></li>
-                    <li><a href="https://imgur.com/t/staff_picks"
-                            target="_blank">Imgur's Staff Picks</a> (Hit and miss, can't use GIFs, ensure you get an actual Image URL)</li>
-                </ul>
-        </ul>
-    </div>
-<!-- 
-    <div class="modal-footer">
-      <h3>Modal Footer</h3>
-    </div>
- -->
   </div>
 
-</div>
-
-
+  <!-- modal div for error messages -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-title">
+        <span class="close">&times;</span>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
