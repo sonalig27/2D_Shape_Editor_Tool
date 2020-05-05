@@ -16,6 +16,7 @@ var defaultText = "Welcome to the 2D shape drawing app";      // Default text fo
 var defaultShapeInfoHTML =     // Default text for the Shape Info tab
     "<h1>Shape Info</h1>" +
     "<p>Click a shape on the canvas for its info.<br>" +
+    "No Info displayed in case of poly-line.<br>" +
     "Create a new shape, using the Shapes tab.</p>";
 
 /******************************************************************************
@@ -312,14 +313,61 @@ function initApp() {
             });
             break;
         case "polyline":
-          alert("poly line not implemented yet");
+            var polyLine;
+            var onShape = false;
+            var linePoints = [{x:pointerPosition.x,y:pointerPosition.y}];
+            var mousePos;
+            var group = new Konva.Group({
+                   draggable: true
+                 });
+             stageDraw.on('mousedown', function() {
+                 linePoints.push({x:stageDraw.getPointerPosition().x,y:stageDraw.getPointerPosition().y});
+             });
+             stageDraw.on('dblclick',function () {
+                 if(linePoints.length >= 2 && !onShape){
+                    for(var i = 0 ; i < linePoints.length - 1 ; i++) {
+                       var x1 = linePoints[i].x;
+                       var y1 = linePoints[i].y;
+                       var x2 = linePoints[i + 1].x;
+                       var y2 = linePoints[i + 1].y;
+                       polyLine = new Konva.Line({
+                         id : "polyline",
+                         points: [x1,y1,x2,y2],
+                         stroke: $c.name2hex('black'),
+                         strokeWidth: 4,
+                         strokeEnabled: true,
+                         lineCap: 'round',
+                         lineJoin: 'round',
+                         strokeScaleEnabled: false,
+                         draggable : false,
+                         resizeEnabled: false,
+                         rotateEnabled: false,
+                     });
+                     group.add(polyLine);
+                    }
+           group.on('mouseover', function() {
+             onShape = true;                 
+             document.body.style.cursor = 'pointer';
+             polyLine.transformsEnabled('none');
+           });
+           group.on('mouseout', function() {
+             document.body.style.cursor = 'default';
+           });
+               layerDraw.add(group);
+               stageDraw.add(layerDraw);
+                 }
+             });
+          //}
+          newShape = group;
           break;
         default:
           break;
       }
 
       if (newShape) {
+          if(newShape.getClassName() != 'Group'){
           finishNewShape(newShape);
+          }
           nextShape="";
           selectedShape = newShape;
       } else {
@@ -331,7 +379,9 @@ function initApp() {
       var tr = new Konva.Transformer();
       tr.rotationSnaps([0, 90, 180, 270]);  // Snapping to 90-degree increments
       layerDraw.add(tr);
-      if(selectedShape.getClassName() != "Shape"){
+
+      //not attaching the transformer to curve, and polyline
+      if(selectedShape.getClassName() != "Shape" && selectedShape.getClassName() != "Group" && selectedShape.getAttrs().id != 'polyline'){
         tr.attachTo(selectedShape);
       }
       layerDraw.draw();
@@ -565,6 +615,8 @@ function getShapeAttributes(shape) {
       createShapeAttributeString(shape, "curve Width: ", "strokeWidth", "number");
       createShapeAttributeString(shape, "curve Width Enabled (true/false): ", "strokeEnabled", "checkbox");
       break;
+    case "Group":
+      createShapeAttributeString(shape, "ID (Make Unique): ", "id");
     case "RegularPolygon":
       var polygonSides = shape.attrs["sides"];
       if(polygonSides == 3){
@@ -603,16 +655,15 @@ function getShapeAttributes(shape) {
         createShapeAttributeString(shape, "Shape Outline Width: ", "strokeWidth", "number");
         createShapeAttributeString(shape, "Shape Outline Enabled (true/false): ", "strokeEnabled", "checkbox");
       }
-      break;
-      
+      break;      
     default:
       isShapeValid = false;
       alert("Shape not valid");
       break;
   }
 
-  // updating Shape Info tab with the table having editing widgets and an Update button
-  if (isShapeValid) {
+  // updating Shape Info tab with the table having editing widgets and an Update button (polyline not included)
+  if (isShapeValid && shape.getAttrs().id != 'polyline') {
     shapeInfoTable += "</tbody></table><br>";
     var objInfo = document.getElementById("Shape Info");
     objInfo.innerHTML = shapeInfoTable;
@@ -731,6 +782,9 @@ function setSelectedShapeAttributes(shape) {
       shape.setAttr("strokeWidth", +(document.getElementById(shape.id() + "strokeWidth").value));
       shape.setAttr("strokeEnabled", document.getElementById(shape.id() + "strokeEnabled").checked);
         break;
+    case "Group":
+      shape.setAttr("id", document.getElementById(shape.id() + "id").value);
+      break;
     case "Text":
       shape.setAttr("id", document.getElementById(shape.id() + "id").value);
       shape.setAttr("text", document.getElementById(shape.id() + "textarea").value);
@@ -837,6 +891,7 @@ function setSelectedShapeAttributes(shape) {
     layerDraw.draw();
   }
 }
+
 
 //creating download link for the canvas
 function downloadURI(uri, name) {
