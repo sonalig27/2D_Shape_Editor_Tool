@@ -15,6 +15,7 @@ I have implemented the 2D-shape editor for the following shapes:
 11) Text
 12) Arrow
 13) Bezier Curve
+14) Poly-Line
 
 I have also implemented the below mentioned transformations for the above mentioned shapes:
 1) Selection
